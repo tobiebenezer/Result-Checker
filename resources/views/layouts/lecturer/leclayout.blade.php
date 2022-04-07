@@ -28,12 +28,12 @@
     </header>  
       <!-- end of header -->
 
-      <div class="container">
+      < class="container">
           <!-- side navigation -->
-          <div class="col-2 fixed bg-primary">
+          <div class="col-2 fixed text-dark bg-primary">
               <spam class="fs-4"> WELCOME {{Auth::user()->name}}</spam>
-              <div class="ml-3 relative">
-                    <x-jet-dropdown align="right" width="48">
+              <div class="ml-3">
+                    
                         <x-slot name="trigger">
                             @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
                                 <button class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition">
@@ -80,7 +80,7 @@
                                 </x-jet-dropdown-link>
                             </form>
                         </x-slot>
-                    </x-jet-dropdown>
+                    
                 </div>
               <hr>
               <ul>
@@ -97,13 +97,13 @@
 
               </ul>
 
-          </div>
 <!-- end of side bar -->
-        <div class="col-10 fixed">
+          </div>
+        <div class="col-9 ">
             @yield('content')
         </div>
 
-      </div>
+      
 
 
 

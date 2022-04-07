@@ -27,13 +27,7 @@ class ExcelSparserController extends Controller
             //where uploaded file will be stored on the server 
             $location = 'uploaded'; // Created an "uploads" folder for that 
             
-            //upload file
-            $new_file = new File();
-            Storage::disk('public')->put($file_name,$temp_path);
-            $new_file['file_name']= $file_name;
-            $new_file['file_path'] = $temp_path;
-            $new_file['user_id'] = Auth::id();
-            $nw
+            
 
 
             //Reading file
@@ -74,6 +68,8 @@ class ExcelSparserController extends Controller
                 }
 
                 //check if course exit, if it those return the course id also create new course and return course id
+                try{
+                    DB::beginTransaction();
                 $check = courses::select('id')->where('course_name',$course_title)->get();
 
                 if($check->id):
@@ -86,9 +82,11 @@ class ExcelSparserController extends Controller
                     $course->save();
                     // returning id
                     $course_id = $course::select('id')->orderBy('id','DESC')->first()->id;
-
                 endif;
-
+                DB::commit();
+            }catch(\Exception $e){
+                DB::rollBack();
+            }
                 if($i==4):
                     $i++;
                 endif;
@@ -106,6 +104,17 @@ class ExcelSparserController extends Controller
             
             foreach($importData as $import_data){
                 try{
+                    //upload file
+            $new_file = new File();
+            Storage::disk('public')->put($file_name,$temp_path);
+            $new_file['file_name']= $file_name;
+            $new_file['file_path'] = $temp_path;
+            $new_file['user_id'] = Auth::id();
+            $new_file->save();
+
+            //getting id for the uploaded file
+            $file_n_id=File::select('id')->orderBy('id','DESC')->first()->id;
+
                     DB::beginTransaction();
                     $result = new results();
                     $result->setMatric_no($import_data[1]);
