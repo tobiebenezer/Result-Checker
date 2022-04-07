@@ -11,6 +11,13 @@ class results extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'session',
+        'matric_no',
+        'grade',
+        'course_id',
+        'file_id'
+    ];
     
 
 
@@ -31,6 +38,14 @@ class results extends Model
      public function setId($id)
      {
          $this->attributes['id'] = $id;
+     }
+     public function getGrade()
+     {
+         $this->attributes['grade'];
+     }
+     public function setGrade($grade)
+     {
+         $this->attributes['grade'] = $grade;
      }
      public function getMatricNo(){
         $this->attributes['matric_no'];

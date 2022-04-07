@@ -10,7 +10,7 @@ use PhpParser\Node\Expr\FuncCall;
 class File extends Model
 {
     use HasFactory;
-    protected $hidden =[
+    protected $fillable =[
         'file_name',
         'file_path',
     ];
