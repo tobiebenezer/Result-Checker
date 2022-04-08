@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\File;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ExcelSparserController as parse;
+use App\Models\entity;
 
 class lecturer extends Controller
 {
@@ -19,6 +20,7 @@ class lecturer extends Controller
         $view_data= [];
         $view_data['title'] = "Lecturers Dashboard";
         $view_data['upload'] = file::select()->where('id',$lecturer);
+    
 
         return view('lecturer.index')->with('viewData',$view_data);
     }

@@ -23,7 +23,7 @@ class ExcelSparserController extends Controller
             $file_size = $file->getSize();
 
             //check for file extension and size
-            $this->checkUploadedFileProperties($extension,$file_size);
+            // $this->checkUploadedFileProperties($extension,$file_size);
             //where uploaded file will be stored on the server 
             $location = 'uploaded'; // Created an "uploads" folder for that 
             
@@ -41,31 +41,35 @@ class ExcelSparserController extends Controller
                 $num = count($file_data);
                 
                 //getting the couses title, creadi load and level from results sheet.
-                            $credit_load = '';
-                            $course_title='';$level = '';
-                            $session = '';
-                for($i;$i<4;$i++)
-                {
+                            $credit_load = $req['credit_load'];
+                            $course_title= $req->input['course_title'];
+                            $level = $req['level'];
+                            $session = $req;
+
+                // for($i;$i<4;$i++)
+                // {
                     
                     
-                    switch($i)
-                    {
-                        case 0:
-                             $course_title = $file_data[2];
-                             break;
-                        case 1: 
-                            $credit_load = $file_data[2];
-                            break;
-                        case 2: 
-                            $level = $file_data[2];
-                            break;
-                        case 3:
-                            $session = $file_data[2];
-                            break;
+                //     switch($i)
+                //     {
+                //         case 0:
+                //              $course_title = $file_data[2];
+                //              break;
+                //         case 1: 
+                //             $credit_load = $file_data[2];
+                //             break;
+                //         case 2: 
+                //             $level = $file_data[2];
+                //             break;
+                //         case 3:
+                //             $session = $file_data[2];
+                //             break;
                             
-                    }
+                //     }
                     
-                }
+                // }
+
+                
 
                 //check if course exit, if it those return the course id also create new course and return course id
                 try{
@@ -87,7 +91,7 @@ class ExcelSparserController extends Controller
             }catch(\Exception $e){
                 DB::rollBack();
             }
-                if($i==4):
+                if($i==0):
                     $i++;
                 endif;
 

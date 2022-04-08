@@ -12,9 +12,10 @@ class entity extends Model
 
         protected $fillable = [
             'matric_no',
+            'role',
         ];
         protected $hidden = [
-            'role',
+            
         ];
     
 

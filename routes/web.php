@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\authController;
 use App\Http\Controllers\lecturer;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -33,24 +34,23 @@ Route::middleware('hod')->group(function(){
 
 });
 
-Route::any('/', function () {
-    return view('home');
-})->name('home');
+Route::any('/',[authController::class,"home"])->name('home');
 Route::middleware('home')->group(function(){
 
     
 });
-Route::get('/lecturer',[lecturer::class,'viewUpload'])->name('lecturer.home');
+
+Route::get('/nome',function(){
+    return view('home');
+});    
+
+Route::middleware('lecture')->group(function(){
+
+Route::any('/lecturer',[lecturer::class,'viewUpload'])->name('lecturer.home');
 Route::any('/upload-file',[lecturer::class,'upload'])->name('lresult.update');
 Route::any('/upload-form',[lecturer::class,'form'])->name('lupload.form');
 
-// Route::middleware('lecture')->group(function(){
-
-// Route::get('/lecturer',[lecturer::class,'viewUpload'])->name('lecturer.home');
-// Route::get('/upload-file',[lecturer::class,'upload'])->name('lresult.update');
-// Route::any('/upload-form',[lecturer::class,'form'])->name('lupload.form');
-
-// });
+});
 
 Route::middleware('student')->group(function(){
 

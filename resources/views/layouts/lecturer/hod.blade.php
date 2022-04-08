@@ -16,51 +16,65 @@
         <ul class="nav nav-tabs justify-content-end ">
   
   <li class="nav-item">
-    <a class="nav-link" href="#">profile</a>
+    <a class="nav-link" href="{{route('profile.show')}}">profile</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="#">logout</a>
+    <a class="nav-link" href="{{route('logout')}}">logout</a>
   </li>
-  
+  </header>
 
+<div class="row g-0" style="height: 90vh;">
+<!-- sidebar -->
+<div class="p-3 col-3 fixed text-white bg-dark">
+<a href="{{ route('admin.home.index') }}" class="text-white text-decoration-none">
+<span class="fs-4">HOD Panel</span>
+</a>
+<hr />
+<ul class="nav flex-column">
+<li><a href="{{ route('admin.home') }}" class="nav-link text-white">- HOD - Home</a></li>
+<li>
+<a href="{{ route('profile.show') }}" class="mt-2 btn bg-primary text-white">Profile</a>
+</li>
+<li><a href="{{ route('lupload.form') }}" class="nav-link text-white">- Upload Result</a></li>
+<li>
+<li>
+<a href="{{ route('admin.create') }}" class="mt-2 btn bg-primary text-white">Add Lecturer</a>
+</li>
+<li>
+<a href="{{ route('admin.edit') }}" class="mt-2 btn bg-primary text-white">Edit User</a>
+</li>
+<li>
+<a href="{{ route('admin.home') }}" class="mt-2 btn bg-primary text-white">Go back to the home page</a>
+</li>
 </ul>
-        </nav>
-    </header>  
-      <!-- end of header -->
+</div>
+<!-- sidebar -->
+<div class="col content-grey">
+<nav class="p-3 shadow text-end">
+<span class="profile-font">Welcome {{Auth::user()->name}}</span>
+<img class="img-profile rounded-circle" src="{{ asset('/img/undraw_profile.svg') }}">
+</nav>
+<div class="g-0 m-5">
 
-      <div class="container">
-          <!-- side navigation -->
-          <div class="col-2 fixed bg-blue">
-              <spam class="fs-4">Welcome H.O.D</spam>
-              <hr>
-              <ul>
+@yield('content')
+</div>
+</div>
+</div>
 
-              <li class="nav-item">
-    <a class="nav-link" href="#" >view Upload</a>
-  </li>     <li class="nav-item">
-    <a class="nav-link" href="#" >Upload Result</a>
-  </li>     <li class="nav-item">
-    <a class="nav-link" href="#" >Register Student</a>
-  </li>     <li class="nav-item">
-    <a class="nav-link" href="#" >Register Lecturer</a>
-  </li>     <li class="nav-item">
-    <a class="nav-link" href="#" >Edit Profile</a>
-  </li> 
-
-              </ul>
-
-          </div>
-<!-- end of side bar -->
-        <div class="col-10 fixed">
-            @yield('content')
+    <!-- footer -->
+    <div class="copyright py-4 text-center  bg-dark text-white">
+        <div class="container">
+            <small>
+                Copyright - <a href="#" class="text-reset fw-bold text-decoration-none" target="_blank">  Awodumila, Tobi Ebenezer  </a>
+            </small>
         </div>
+    </div>
+    <!-- footer -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"> 
+</script>
+    -->
+    <script src="{{ asset('js/app.js') }}" defer></script>
 
-      </div>
-
-
-
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
 </body>
 </html>

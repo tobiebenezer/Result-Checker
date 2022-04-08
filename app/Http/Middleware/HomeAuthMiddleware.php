@@ -18,7 +18,7 @@ class HomeAuthMiddleware
      */
     public function handle(Request $request, Closure $next)
     { 
-        $role = entity::select('role')->where('id',Auth::user()->getEntity())->get()->role;
+        $role = entity::select('role')->where('id',Auth::user()->getEntity())->first()->role;
         if(Auth::user() && $role =='student' ):
         return $next($request);
     elseif(Auth::user() && $role=='hod'):

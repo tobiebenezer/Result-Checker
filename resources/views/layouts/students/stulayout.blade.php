@@ -15,13 +15,13 @@
         <nav class="bg-dark text-white">
         <ul class="nav nav-tabs justify-content-end ">
   <li class="nav-item">
-    <a class="nav-link active" aria-current="page" href="#">View Results</a>
+    <a class="nav-link active" aria-current="page" href="{{route('view.result')}}">View Results</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="#">profile</a>
+    <a class="nav-link" href="{{route('profile.show')}}">profile</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="#">logout</a>
+    <a class="nav-link" href="{{route('logout')}}">logout</a>
   </li>
   
 
