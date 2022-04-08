@@ -33,7 +33,11 @@ class lecturer extends Controller
     }
 
     public function upload(Request $request){
-        $content_parse = new parse();
+        
+
+        $content_parse = new parse($request);
+                // {
+
         $content_parse->uploadContent($request);
         $view_data= [];
         $view_data['title'] = "Lecturers Dashboard";

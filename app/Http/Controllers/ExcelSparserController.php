@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Storage;
 class ExcelSparserController extends Controller
 {
     //get the file for parsing
-    public function uploadContent(Request $req)
+    public function uploadContent($req)
     {
         $file = $req->file('result');
         if($file):
@@ -41,13 +41,12 @@ class ExcelSparserController extends Controller
                 $num = count($file_data);
                 
                 //getting the couses title, creadi load and level from results sheet.
-                            $credit_load = $req['credit_load'];
-                            $course_title= $req->input['course_title'];
-                            $level = $req['level'];
-                            $session = $req;
+                            $credit_load = $req->input('credit_load');
+                            $course_title= $req->input('course_title');
+                            $level = $req->input('level');
+                            $session = $req->input('session');
 
                 // for($i;$i<4;$i++)
-                // {
                     
                     
                 //     switch($i)
@@ -72,12 +71,12 @@ class ExcelSparserController extends Controller
                 
 
                 //check if course exit, if it those return the course id also create new course and return course id
-                try{
+                
                     DB::beginTransaction();
-                $check = courses::select('id')->where('course_name',$course_title)->get();
+                $check = courses::select()->where('course_name',$course_title)->exists();
 
-                if($check->id):
-                    $course_id = $check->id;
+                if($check):
+                    continue;
                 else:
                     $course = new courses();
                     $course['course_name'] =$course_title;
@@ -88,9 +87,9 @@ class ExcelSparserController extends Controller
                     $course_id = $course::select('id')->orderBy('id','DESC')->first()->id;
                 endif;
                 DB::commit();
-            }catch(\Exception $e){
-                DB::rollBack();
-            }
+            
+                // DB::rollBack();
+            
                 if($i==0):
                     $i++;
                 endif;

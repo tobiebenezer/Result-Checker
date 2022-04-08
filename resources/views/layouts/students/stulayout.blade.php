@@ -15,7 +15,7 @@
         <nav class="bg-dark text-white">
         <ul class="nav nav-tabs justify-content-end ">
   <li class="nav-item">
-    <a class="nav-link active" aria-current="page" href="{{route('view.result')}}">View Results</a>
+    <a class="nav-link active" aria-current="page" href="{{route('student.result')}}">View Results</a>
   </li>
   <li class="nav-item">
     <a class="nav-link" href="{{route('profile.show')}}">profile</a>

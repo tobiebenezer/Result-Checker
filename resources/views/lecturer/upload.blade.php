@@ -4,7 +4,14 @@
 
 
     <div class="card">
-    <div class="row"> insert result Excel files only</div>
+    @if ($errors->any())
+            <ul class="alert alert-danger list-unstyled">
+                @foreach ($errors->all() as $error)
+                <li>-{{ $error }}</li>
+                @endforeach
+            </ul>
+        @endif
+    <div class="row ml-1"> insert result Excel files only</div>
     <div class="row">
     <div class="col">
     <form action="{{ route('lresult.update') }}" method="POST" enctype="multipart/form-data">
@@ -30,7 +37,7 @@
                 <input type="text"  id= "session " name="session" class="form-control">
             </div>
 
-            <label for="res" class="col-lg-2 col-form-label">Result:</label>
+            <label for="res">Result:</label>
             <div id='res' class="col-lg-10 col-md-6 col-sm-12">
                 <input type="file" accept="xls,xlsx,xlsm,xlsb" name="result" class="form-control">
             </div>

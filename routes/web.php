@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\authController;
 use App\Http\Controllers\lecturer;
+use App\Http\Controllers\studentController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Laravel\Jetstream\Rules\Role;
@@ -34,13 +35,9 @@ Route::middleware('hod')->group(function(){
 
 });
 
-Route::any('/',[authController::class,"home"])->name('home');
-Route::middleware('home')->group(function(){
+Route::any('/index',[authController::class,"home"])->name('home');
 
-    
-});
-
-Route::get('/nome',function(){
+Route::any('/',function(){
     return view('home');
 });    
 
@@ -53,6 +50,9 @@ Route::any('/upload-form',[lecturer::class,'form'])->name('lupload.form');
 });
 
 Route::middleware('student')->group(function(){
+    Route::get('/student_home',[studentController::class,'index'])->name('student.home');
+
+    Route::get('/result',[studentController::class,'resultView'])->name('student.result');
 
 });
 
