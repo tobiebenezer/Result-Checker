@@ -9,7 +9,7 @@
     <title>@yield('title')</title>
 </head>
 
-<body style="height: 90vh;">
+<body >
     <!-- header -->
     <header>
         <nav class="bg-dark text-white">
@@ -24,7 +24,7 @@
   </header>
 
 <div>
-<div class="row g-0" style="height: 90vh;">
+<div class="row g-0" ">
 <!-- sidebar -->
 <div class="p-3 col-3 align-items-stretch fixed text-white bg-dark">
 <a href="{{ route('lecturer.home') }}" class="text-white text-decoration-none">
@@ -43,7 +43,7 @@
 <div class="col content-grey">
 <nav class="p-3 shadow text-end">
 <span class="profile-font">Admin</span>
-<img class="img-profile rounded-circle" src="{{ asset('/img/undraw_profile.svg') }}">
+<img class="img-profile rounded-circle" src="">
 </nav>
 <div class="g-0 m-5">
 @yield('content')

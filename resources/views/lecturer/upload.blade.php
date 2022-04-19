@@ -3,17 +3,14 @@
 @section('content')
 
 
-    <div class="card">
-    @if ($errors->any())
-            <ul class="alert alert-danger list-unstyled">
-                @foreach ($errors->all() as $error)
-                <li>-{{ $error }}</li>
-                @endforeach
-            </ul>
+    <div class="card p-5 align-items-center">
+    @if (Session::get('status'))
+            <div class="row alert alert-success list-unstyled">
+               {{Session::get('status')}}
+            </div>
         @endif
     <div class="row ml-1"> insert result Excel files only</div>
     <div class="row">
-    <div class="col">
     <form action="{{ route('lresult.update') }}" method="POST" enctype="multipart/form-data">
             @csrf
         <div class="mb-3 row">
@@ -43,7 +40,7 @@
             </div>
 
         </div>
-        <div class="col">
+        <div class="row">
         &nbsp;
     </div>
         <button type="submit" class="btn btn-primary">Submit</button>
@@ -52,7 +49,6 @@
         </form>
         
       
-    </div>
     </div>
     </div>
 @endsection

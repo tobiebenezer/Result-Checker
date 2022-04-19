@@ -2,7 +2,7 @@
 @section($viewData['title'])
 @section('content')
 <div class="card-header">
-     Your Result {{ Auth::user()->name }}
+     Your Result {{ Auth::user()->name }} {{ $viewData['mat_no'] }}
     </div>
     <div class="card-body">
         <table class="table table-bordered table-striped">
@@ -18,13 +18,14 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($viewData['results'] as $result )
+                @foreach ($viewData['results'] as $index => $result )
                 
                 <tr>
-                    <td>{{ $result['course_title'] }}</td>
-                    <td>{{ $result['grade'] }}</td>
-                    <td>{{ $result['session']}}</td>
-                    <td> {{$result['level']}}</td>
+                    <td>{{ $index+=1 }}</td>
+                    <td>{{ $result->course_name }}</td>
+                    <td>{{ $result->grade }}</td>
+                    <td>{{ $result->session}}</td>
+                    <td> {{$result->level}}</td>
                 </tr>
                     
                 @endforeach

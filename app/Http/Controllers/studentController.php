@@ -17,16 +17,25 @@ class studentController extends Controller
     }
 
     public function resultView(Request $request){
-        $matric_number = entity::select('matric_no')->where('id',Auth::user()->role)->first()->matric_no;
+
+        $matric_number = entity::find(Auth::user()->entity)->matric_no;
+        ;
 
         // $result = results::select()->where('matric_no',$matric_number)->get();
 
         // $course = courses::select()->get()
         $user = DB::table("courses")
-                        ->join('results','courses.id','=','results.course_id')->select('courses.course_name','courses.level','course_name.credit_load','results.grade','results.session','results.matric_no')->where('results.matric
-                        ')->first();
+                        ->join('results','courses.id','=','results.course_id')->select('courses.course_name','courses.level','courses.credit_load','results.grade','results.session','results.matric_no')->where('results.matric_no',$matric_number)->get();
+                       
+        $viewData =[];
+        $viewData['title'] = 'Result Page';
+        $viewData['results'] =$user;
+        $viewData['mat_no'] = $matric_number;
+        // foreach($viewData['results'] as $result):
+        //     dd($result);
+        // endforeach;
         
-        return view('student.result')->with('viewData', $user);
+        return view('student.result')->with('viewData', $viewData);
                         
     }
 }

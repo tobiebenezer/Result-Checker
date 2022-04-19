@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Validator;
 use PhpParser\Builder\Function_;
 use PhpParser\Node\Expr\FuncCall;
 
@@ -14,6 +15,21 @@ class File extends Model
         'file_name',
         'file_path',
     ];
+
+    public function val($result){
+        $rules=[
+            'file_name'=>'required|unique',
+            'file_path' =>'required',
+            'user_id' => 'requird'
+        ];
+
+        $validator=Validator::make($result,$rules);
+        if($validator->fails):
+            return $validator->errors();
+        else:
+            return 'valid';
+        endif;
+    }
 
     /**
      * $this->attributes['file_name']-string- contain the name of the file

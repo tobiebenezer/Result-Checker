@@ -19,9 +19,9 @@ class lecturer extends Controller
 
         $view_data= [];
         $view_data['title'] = "Lecturers Dashboard";
-        $view_data['upload'] = file::select()->where('id',$lecturer);
+        $view_data['upload'] = file::select()->where('user_id',$lecturer)->paginate(15);
     
-
+        // dd($view_data);
         return view('lecturer.index')->with('viewData',$view_data);
     }
 
@@ -35,14 +35,13 @@ class lecturer extends Controller
     public function upload(Request $request){
         
 
-        $content_parse = new parse($request);
-                // {
-
-        $content_parse->uploadContent($request);
+        // 
+        $content_parse = new parse();
         $view_data= [];
         $view_data['title'] = "Lecturers Dashboard";
-        $view_data['message'] = "Successful";
-        return view('lecturer.upload')->with('viewData',$view_data);
+        $view_data['message'] = $request->session()->flash('status',$content_parse->uploadContent($request));
+        
+        return redirect('/upload-form')->with('viewData',$view_data);
     }
 
     
